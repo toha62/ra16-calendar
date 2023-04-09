@@ -1,4 +1,5 @@
 import Header from './Header'
+import BodyHeader from './BodyHeader'
 
 export default function Calendar({ date }) {
   const dayWeek = [
@@ -30,6 +31,11 @@ export default function Calendar({ date }) {
   const week = dayWeek[date.getDay()];
   const day = date.getDate();
   return (
-   <Header day={day} week={week} month={month} year={year} />
+   <>
+    <Header day={day} week={week} month={month} year={year} />
+    <table class="ui-datepicker-calendar">
+      <BodyHeader />
+    </table>
+  </>
   );
 }
