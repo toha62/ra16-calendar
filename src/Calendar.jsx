@@ -1,41 +1,35 @@
 import Header from './Header'
-import BodyHeader from './BodyHeader'
+import TableHead from './TableHead'
+import Row from './Row'
 
-export default function Calendar({ date }) {
-  const dayWeek = [
-    'Воскресенье',
-    'Понедельник',
-    'Вторник',
-    'Среда',
-    'Четверг',
-    'Пятница',
-    'Суббота',
-  ];
-  const monthName = [
-    ['Январь', 'Января'],
-    ['Февраль', 'Февраля'],
-    ['Март', 'Марта'],
-    ['Апрель', 'Апреля'],
-    ['Май', 'Мая'],
-    ['Июнь', 'Июня'],
-    ['Июль', 'Июля'],
-    ['Август', 'Августа'],
-    ['Сентябрь', 'Сентября'],
-    ['Октябрь', 'Октября'],
-    ['Ноябрь', 'Ноября'],
-    ['Декабрь', 'Декабря'],
-  ];
+export default function Calendar({ date }) { 
+  const today = date.getDate(); 
+  const startDate = new Date(date);
 
-  const year = date.getFullYear();
-  const month = monthName[date.getMonth()];
-  const week = dayWeek[date.getDay()];
-  const day = date.getDate();
+  startDate.setDate(1);
+
+  const dayOfWeek = getDayOfWeek(startDate.getDay());
+
+  startDate.setDate(1 - dayOfWeek);
+
   return (
    <>
-    <Header day={day} week={week} month={month} year={year} />
-    <table class="ui-datepicker-calendar">
-      <BodyHeader />
+    <Header date={date} />
+    <table className="ui-datepicker-calendar">
+      <TableHead />
+      <tbody>
+        <Row startDate={startDate} today={today} firstRow={true} />
+        <Row startDate={startDate} today={today} />
+        <Row startDate={startDate} today={today} />
+        <Row startDate={startDate} today={today} />
+        <Row startDate={startDate} today={today} lastRow={true} />
+        <Row startDate={startDate} today={today} lastRow={true} />
+      </tbody>      
     </table>
   </>
   );
+}
+
+function getDayOfWeek(week) {
+  return week === 0 ? 6 : week - 1;
 }

@@ -1,4 +1,4 @@
-export default function BodyHeader() {
+export default function TableHead() {
   return (
     <>
       <colgroup>
@@ -7,8 +7,8 @@ export default function BodyHeader() {
         <col></col>
         <col></col>
         <col></col>
-        <col class="ui-datepicker-week-end"></col>
-        <col class="ui-datepicker-week-end"></col>
+        <col className="ui-datepicker-week-end"></col>
+        <col className="ui-datepicker-week-end"></col>
       </colgroup>
       <thead>
         <tr>
